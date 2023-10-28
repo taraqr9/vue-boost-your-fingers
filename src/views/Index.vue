@@ -2,12 +2,28 @@
 import {computed, onBeforeMount, onMounted, ref} from "vue";
 
 const pera = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, voluptatem! Molestiae voluptas, harum, eos at dolor, quod quidem modi voluptate veniam eligendi voluptates excepturi magni? Nobis totam quaerat sunt dolorem."
-
+const arrayPera = pera.split(' ');
+const user_input_number = ref(0);
+const start_btn = ref(false);
+const input_read_only = ref(true);
 const user_input = ref('');
 
 function checkWord(){
-  console.log(user_input.value);
+  if(user_input.value.trim() === arrayPera[user_input_number.value].trim()){
+    console.log('matched');
+  }else{
+
+    console.log("user input : "+user_input.value+ " Pera : " + arrayPera[user_input_number.value]);
+    console.log('not matched');
+  }
+
+  user_input_number.value += 1;
   user_input.value =''
+}
+
+function startBtn(){
+  start_btn.value = true;
+  input_read_only.value = false;
 }
 
 onBeforeMount(()=>{
@@ -39,7 +55,7 @@ onBeforeMount(()=>{
       <textarea
           id="message"
           rows="4"
-          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+          class="block p-2.5 w-full h-48 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
           readonly
       >
       {{ pera }}
@@ -56,17 +72,16 @@ onBeforeMount(()=>{
             class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"
             @keyup.space="checkWord"
             v-model="user_input"
+            :readonly="input_read_only"
         />
       </div>
 
       <div class="mb-6">
-        <input
-            type="text"
-            id="large-input"
-            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"
-            readonly
-            :value="user_input"
-        />
+        <button class="block w-48 p-4 text-gray-900 btn-green" @click="startBtn">Start</button>
+      </div>
+
+      <div class="mb-6">
+        <button class="block w-48 p-4 text-gray-900 btn-green" @click="stopTimer">Stop</button>
       </div>
     </div>
   </div>
