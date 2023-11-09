@@ -60,14 +60,14 @@ function restart() {
 </script>
 
 <template>
-  <title>Finger Booster</title>
+  <title>Fingers Booster</title>
 
   <div class="h-screen flex items-center justify-center bg-gray-400">
     <div
         class="w-1/5 p-8 bg-white rounded-xl shadow-2xl h-full"
     >
       <h3 class="text-center text-2xl mb-2 bg-green-500 rounded-full p-2 text-white">
-        Finger Booster
+        Fingers Booster
       </h3>
 
       <label class="block mb-2 text-sm font-medium text-gray-900">Your message</label>
